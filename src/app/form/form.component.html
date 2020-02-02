@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF 8">
+  </head>
+  <body>
+    <h2>Simple Date Converter</h2>
+    <br>
+    <br>
+    <form action="result.component.html" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label>Input RFC-3339 Formatted Date</label>
+            <br><br>
+            <input type="text" formControlName="dateF" class="formatdate" ng-controller= "formProcess" [ngClass]="{ 'is-invalid': submitted && f.date.errors }" />
+            <br><br>
+            <input type="submit" id="fsubmit">
+            <div *ngIf="submitted && f.date.errors" class="invalid-feedback">
+                <div *ngIf="f.date.errors.required">Field must be filled</div>
+            </div>
+        </div>
+        <script>
+            $('.formatdate').each(function() {
+                var date = document.getElementByClassName('formatdate');
+                $(".formatdate").innerHTML = new Date(date);
+            });
+        </script>
+    </form>
+  </body>
+</html>
