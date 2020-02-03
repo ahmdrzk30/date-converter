@@ -4,25 +4,29 @@
     <meta charset="UTF 8">
   </head>
   <body>
-    <h2>Simple Date Converter</h2>
+    <h2 style="text-align: center">Simple Date Converter</h2>
     <br>
     <br>
-    <form action="result.component.html" (ngSubmit)="onSubmit()">
-        <div class="form-group">
+    <form name="dateForm" action="result.component.html" (ngSubmit)="onSubmit()" method="GET">
+        <div style="text-align:center" class="form-group">
             <label>Input RFC-3339 Formatted Date</label>
             <br><br>
-            <input type="text" formControlName="dateF" class="formatdate" ng-controller= "formProcess" [ngClass]="{ 'is-invalid': submitted && f.date.errors }" />
+                <input type="text" name="form1" class="formatdate">
             <br><br>
             <input type="submit" id="fsubmit">
-            <div *ngIf="submitted && f.date.errors" class="invalid-feedback">
-                <div *ngIf="f.date.errors.required">Field must be filled</div>
-            </div>
         </div>
         <script>
             $('.formatdate').each(function() {
                 var date = document.getElementByClassName('formatdate');
                 $(".formatdate").innerHTML = new Date(date);
             });
+        function formValidation(){
+            var df = document.forms["dateForm"]["form1"].value;
+            if(df == null | df == ""){
+                alert("Field must be filled");
+                return false;
+            }
+        }
         </script>
     </form>
   </body>
